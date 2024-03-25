@@ -13,7 +13,7 @@ import (
 
 func listVersions(verMatch string, all bool) {
 
-	releaseTags, err := getGitHubReleases("kubernetes", "kubernetes")
+	releaseTags, err := getGitHubReleases("bronze1man", "json2yaml")
 	if err != nil {
 		c.Logger.WithError(err).Error("failed to read github releases")
 	}
@@ -66,9 +66,10 @@ func justMinors(releaseTags *[]string, verMatch string) {
 
 	sort.Sort(semver.Collection(vs))
 
-	// kubernetes/kubernetes uses a "v", so we should indicate so
+	// bronze1man/json2yaml uses a "v", so we should indicate so
 	for _, v := range vs {
-		fmt.Printf("v%s\n", v)
+		shortV, _ := strings.CutSuffix(v.String(), ".0")
+		fmt.Printf("v%s\n", shortV)
 	}
 }
 

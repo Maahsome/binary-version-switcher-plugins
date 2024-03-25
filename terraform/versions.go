@@ -61,7 +61,7 @@ func justMinors(releaseTags *[]string, verMatch string) {
 		}
 		if processVer {
 			if _, ok := minorRelease[verKey]; ok {
-				if minorRelease[verKey].Minor() < nv.Minor() {
+				if minorRelease[verKey].Patch() < nv.Patch() {
 					minorRelease[verKey] = *nv
 				}
 			} else {

@@ -21,4 +21,5 @@
 go.work
 
 **/*.so
+plugins.txt
 

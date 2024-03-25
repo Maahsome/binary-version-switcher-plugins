@@ -24,23 +24,23 @@ func longDescription() string {
 	yellow := color.New(color.FgYellow).SprintFunc()
 
 	longText += `EXAMPLE:
-    List the versions of "terraform"`
+    List the versions of "jsonui"`
 
 	longText = fmt.Sprintf("%s\n\n    > %s\n\n", longText,
-		yellow("binary-version-switcher terraform versions"))
+		yellow("binary-version-switcher jsonui versions"))
 
 	longText += `EXAMPLE:
-    Activate a specific version of "terraform"`
+    Activate a specific version of "jsonui"`
 
 	longText = fmt.Sprintf("%s\n\n    > %s\n\n", longText,
-		yellow("binary-version-switcher terraform activate -v \"v1.4.6\""))
+		yellow("binary-version-switcher jsonui activate -v \"v1.28.0\""))
 
 	return longText
 }
 
 var MainCmd = &cobra.Command{
-	Use:   "terraform",
-	Short: "Switch between versions of terraform",
+	Use:   "jsonui",
+	Short: "Switch between versions of jsonui",
 	Long:  longDescription(),
 }
 
@@ -60,8 +60,8 @@ func InitMainCmd(sym string, bin string, loglevel string) {
 
 var versionsCmd = &cobra.Command{
 	Use:   "versions",
-	Short: "List versions for terraform",
-	Long:  longDescription(),
+	Short: "jsonui list versions",
+	Long:  fmt.Sprintf("%s\n\n%s", longDescription(), `Unless "-a" is specified, only the highest PATCH for each MAJOR.MINOR will be returned`),
 	Run: func(cmd *cobra.Command, args []string) {
 		c.Logger.Info("Fetching a list of versions...")
 		verMatch, _ := cmd.Flags().GetString("version")
@@ -72,7 +72,7 @@ var versionsCmd = &cobra.Command{
 
 var activateCmd = &cobra.Command{
 	Use:   "activate",
-	Short: "terraform activate",
+	Short: "jsonui activate",
 	Long:  longDescription(),
 	Run: func(cmd *cobra.Command, args []string) {
 
